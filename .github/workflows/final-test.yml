@@ -19,11 +19,6 @@ jobs:
         with:
           xcode-version: '16.1'
 
-      - name: CocoaPods 설치 (필수!)
-        run: |
-          gem install cocoapods
-          pod install
-
       - name: 진짜 NEPacketTunnelProvider 테스트 실행
         run: |
           xcodebuild test \
