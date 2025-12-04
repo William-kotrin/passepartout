@@ -19,6 +19,14 @@ jobs:
         with:
           xcode-version: '16.1'
 
+     # 2. Swift 6.2 강제로 설치 (이게 핵심!)
+      - name: Swift 6.2 설치
+        run: |
+          curl -L -o swift-6.2.tar.gz https://download.swift.org/development/trunk/latest-build/swift-6.2-DEVELOPMENT-SNAPSHOT-2025-12-03-a/swift-6.2-DEVELOPMENT-SNAPSHOT-ubuntu22.04-aarch64.tar.gz
+          tar -xzf swift-6.2.tar.gz
+          sudo mv swift-6.2-DEVELOPMENT-SNAPSHOT-ubuntu22.04-aarch64 /opt/swift-6.2
+          echo "/opt/swift-6.2/usr/bin" >> $GITHUB_PATH
+
       - name: 진짜 NEPacketTunnelProvider 테스트 실행
         run: |
           xcodebuild test \
