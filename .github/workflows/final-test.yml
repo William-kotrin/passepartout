@@ -22,7 +22,7 @@ jobs:
       - name: 진짜 NEPacketTunnelProvider 테스트 실행
         run: |
           xcodebuild test \
-            -workspace Passepartout.xcworkspace \
+            -workspace Passepartout.xcodeproj/project.xcworkspace \
             -scheme Passepartout \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.1' \
             -only-testing:PassepartoutTests
