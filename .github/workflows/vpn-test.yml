@@ -1,0 +1,30 @@
+name: VPN Test - No CocoaPods
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: macos-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout 코드
+        uses: actions/checkout@v4
+
+      - name: Xcode 버전 설정
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '16.1'
+
+      - name: Xcode 프로젝트 빌드 & 테스트
+        run: |
+          xcodebuild clean build test \
+            -project NEPacketTunnelVPNDemo.xcodeproj \
+            -scheme NEPacketTunnelVPNDemo \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.1' \
+            -only-testing:NEPacketTunnelVPNDemoTests \
+            -quiet
